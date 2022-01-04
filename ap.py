@@ -24,16 +24,13 @@ def welcome():
     return "Welcome All"
 
 #@app.route('/predict',methods=["Get"])
-def predict_note_authentication(Id,SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm):
+def predict_note_authentication(SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm):
     
     """Let's Authenticate the iris
     This is using docstrings for specifications.
     ---
     parameters:  
-      - name: Id
-        in: query
-        type: number
-        required: true
+     
       - name: SepalLengthCm
         in: query
         type: number
@@ -56,7 +53,7 @@ def predict_note_authentication(Id,SepalLengthCm,SepalWidthCm,PetalLengthCm,Peta
         
     """
    
-    prediction=classifier.predict([[Id,SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm]])
+    prediction=classifier.predict([[SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm]])
     print(prediction)
     return prediction
 
@@ -70,14 +67,13 @@ def main():
     </div>
     """
     st.markdown(html_temp,unsafe_allow_html=True)
-    Id = st.text_input("Id","Type Here")
     SepalLengthCm = st.text_input("SepalLengthCm","Type Here")
     SepalWidthCm = st.text_input("SepalWidthCm","Type Here")
     PetalLengthCm = st.text_input("PetalLengthCm","Type Here")
     PetalWidthCm = st.text_input("PetalWidthCm","Type Here")
     result=""
     if st.button("Predict"):
-        result=predict_note_authentication(Id,SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm)
+        result=predict_note_authentication(SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm)
     st.success('The output is {}'.format(result))
     if st.button("About"):
         st.text("Lets LEarn")
